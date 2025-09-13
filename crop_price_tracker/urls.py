@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from crop_price import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',views.home),
+    path('request/', views.request_page, name='request'),
+
 ]
