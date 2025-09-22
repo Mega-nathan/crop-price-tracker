@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8fafc;
+      color: #333;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #1e40af;
+      color: #fff;
+      padding: 20px 0;
+      min-height: 100vh;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .sidebar ul li:hover,
+    .sidebar ul li.active {
+      background: #2563eb;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      padding: 20px 30px;
+    }
+
+    .main h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    /* Dashboard grid */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    /* Card styles */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .card .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #555;
+      margin: 0;
+    }
+
+    /* Colors for icons */
+    .green { color: #16a34a; }
+    .yellow { color: #f59e0b; }
+    .red { color: #dc2626; }
+    .blue { color: #2563eb; }
+    .indigo { color: #4f46e5; }
+    .purple { color: #7c3aed; }
+    .teal { color: #0d9488; }
+
+    
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Dashboard</h2>
+    <ul>
+      <li onclick="gotoHome()" class="active">Dashboard</li>
+      <li onclick="gotoChatbot()">Crop Advice</li>
+      <li onclick="gotoWeather()" >Weather Alerts</li>
+      <li onclick="gotoPest()">Pest Detection</li>
+      <li onclick="gotomarket()" >Market Prices</li>
+      <li>Storage Godown</li>
+      <li>Tractor Driver Connect</li>
+      <li>Harvest Labour Connect</li>
+    </ul>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+    <h1>Farmer Dashboard</h1>
+    <div class="dashboard">
+      <div class="card" onclick="gotoChatbot()">
+        <div class="icon green">🌱</div>
+        <h3>Crop Advice</h3>
+        <p>Personalized recommendations for your crops</p>
+      </div>
+      <div class="card" onclick="gotoWeather()">
+        <div class="icon yellow">☀️</div>
+        <h3>Weather Alerts</h3>
+        <p>Track current weather conditions and forecasts</p>
+      </div>
+      <div class="card" onclick="gotoPest()">
+        <div class="icon red">🐛</div>
+        <h3>Pest Detection</h3>
+        <p>Early warning of common pest infestations</p>
+      </div>
+      <div class="card" onclick="gotomarket()">
+        <div class="icon yellow">💰</div>
+        <h3>Market Prices</h3>
+        <p>View current market prices</p>
+        <p><strong>Wheat: $223/tonne</strong></p>
+      </div>
+      <div class="card">
+        <div class="icon blue">🏬</div>
+        <h3>Storage Godown</h3>
+        <p>Manage your storage facilities</p>
+      </div>
+      <div class="card">
+        <div class="icon teal">🚜</div>
+        <h3>Tractor Driver Connect</h3>
+        <p>Network and communicate with drivers</p>
+      </div>
+      <div class="card">
+        <div class="icon purple">👥</div>
+        <h3>Harvest Labour Connect</h3>
+        <p>Find and manage harvest workers</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function gotomarket(){
+        window.location.href="http://localhost:8000/marketPrice"
+    }
+
+    function gotoPest(){
+        window.location.href="http://localhost:8000/pest"
+    }
+
+    function gotoChatbot(){
+        window.location.href="http://localhost:8000/chatbot"
+    }
+
+    function gotoWeather(){
+        window.location.href="http://localhost:8000/weather"
+    }
+
+    function gotoHome(){
+        window.location.href="http://localhost:8000"
+    }
+
+  </script>
+</body>
+</html>

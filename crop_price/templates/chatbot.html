@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Dashboard</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8fafc;
+      color: #333;
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #1e40af;
+      color: #fff;
+      padding: 20px 0;
+      min-height: 100vh;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .sidebar ul li:hover,
+    .sidebar ul li.active {
+      background: #2563eb;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      padding: 20px 30px;
+    }
+
+    .main h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    /* Dashboard grid */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    /* Card styles */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    .card .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #555;
+      margin: 0;
+    }
+
+    /* Colors for icons */
+    .green { color: #16a34a; }
+    .yellow { color: #f59e0b; }
+    .red { color: #dc2626; }
+    .blue { color: #2563eb; }
+    .indigo { color: #4f46e5; }
+    .purple { color: #7c3aed; }
+    .teal { color: #0d9488; }
+
+    .chat-container {
+      width: 900px;
+      max-width: 95%;
+      height: 500px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    /* Messages area */
+    .messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message {
+      background: #F4F4F4;
+      padding: 12px 16px;
+      border-radius: 12px;
+      max-width: 75%;
+      font-size: 14px;
+      line-height: 1.4;
+      word-wrap: break-word;
+      color: black;
+    }
+
+    /* Both request and response have same style */
+    .user {
+      align-self: flex-end;
+    }
+
+    .bot {
+      align-self: flex-start;
+    }
+
+    /* Input box */
+    .input-area {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: #FFFFFF;
+    }
+
+    .input-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      border-radius: 30px;
+      padding: 10px 15px;
+      gap: 10px;
+      border: 1px solid #636363;
+
+    }
+
+    .input-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #919191;
+      font-size: 14px;
+    }
+
+    .icon {
+      color: #aaa;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .icon:hover {
+      color: #1e1e1e;
+    }
+
+    .content-head{
+        text-align: center;
+    }
+
+    .right-content{
+        margin: auto;
+        margin-top: 0vh;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Dashboard</h2>
+    <ul>
+      <li onclick="gotoHome()" class="active">Dashboard</li>
+      <li onclick="gotoChatbot()">Crop Advice</li>
+      <li onclick="gotoWeather()" >Weather Alerts</li>
+      <li onclick="gotoPest()">Pest Detection</li>
+      <li onclick="gotomarket()" >Market Prices</li>
+      <li>Storage Godown</li>
+      <li>Tractor Driver Connect</li>
+      <li>Harvest Labour Connect</li>
+    </ul>
+  </div>
+
+  <!-- Main content -->
+
+  <div class="right-content">
+
+    <div class="main">
+        <h1 class="content-head">AgriNav BOT</h1>
+
+            <div class="chat-container">
+                <!-- Messages -->
+                <div class="messages" id="messages"></div>
+
+                <!-- Input -->
+                <div class="input-area">
+
+                <div class="input-box">
+                    <span class="icon">+</span>
+                    <input type="text" id="userInput" placeholder="Ask anything">
+                    <span class="icon" onclick="sendMessage()"><span class="material-symbols-outlined">mic</span></span>
+                    <span class="icon" onclick="gotoVoice()"><span class="material-symbols-outlined">graphic_eq</span></span>
+                </div>
+
+                </div>
+            </div>
+    </div>
+    </div>
+
+  <script>
+    function gotomarket(){
+        window.location.href="http://localhost:8000/marketPrice"
+    }
+
+    function gotoPest(){
+        window.location.href="http://localhost:8000/pest"
+    }
+
+    function gotoChatbot(){
+        window.location.href="http://localhost:8000/chatbot"
+    }
+
+    function gotoWeather(){
+        window.location.href="http://localhost:8000/weather"
+    }
+
+    function gotoHome(){
+        window.location.href="http://localhost:8000"
+    }
+
+    function gotoVoice(){
+        window.location.href="http://localhost:8000/voice"
+    }
+
+    const messagesDiv = document.getElementById("messages");
+    const userInput = document.getElementById("userInput");
+
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (text === "") return;
+
+      // User message
+      appendMessage(text, "user");
+
+      // Clear input
+      userInput.value = "";
+
+      // Simulated bot response
+      setTimeout(() => {
+        appendMessage("This is a bot reply to: " + text, "bot");
+      }, 500);
+    }
+  </script>
+</body>
+</html>

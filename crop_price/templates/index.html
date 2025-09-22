@@ -37,18 +37,25 @@
                     <th>City</th>
                     <th>Commodity</th>
                     <th>Min Price</th>
+                    <th>Max Price</th>
                     <th>Modal Price</th>
                     <th>Date</th>
                 </tr>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                {% for i in data %}
+
+                    <tr>
+                        <td>{{i.s_no}}</td>
+                        <td>{{i.city}}</td>
+                        <td>{{i.commodity}}</td>
+                        <td>{{i.min_Price}}</td>
+                        <td>{{i.max_Price}}</td>
+                        <td>{{i.modal_Price}}</td>
+                        <td>{{i.date}}</td>
+                    </tr>
+
+                {% endfor %}
+
 
             </table>
 
