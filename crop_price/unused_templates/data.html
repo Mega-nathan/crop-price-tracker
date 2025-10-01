@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table{
+        border-collapse: collapse;
+        width: 80%;
+        height: 8vh;
+    }
+
+    td,th{
+        border: 2px solid black;
+    }
+    
+    tr{
+        padding: 4vh;
+    }
+</style>
+<body>
+    
+    <div class="bg-container"> <!-- Overall Container -->
+        
+        <div class="bg-head-container"> <!-- Heading Container -->
+            <h1>Crop Current Market Pricess</h1> 
+        </div>
+
+        <div>
+
+            <table>
+                
+                <tr>
+                    <th>S.No</th>
+                    <th>City</th>
+                    <th>Commodity</th>
+                    <th>Min Price</th>
+                    <th>Max Price</th>
+                    <th>Modal Price</th>
+                    <th>Date</th>
+                </tr>
+
+                {% for i in data %}
+
+                    <tr>
+                        <td>{{i.s_no}}</td>
+                        <td>{{i.city}}</td>
+                        <td>{{i.commodity}}</td>
+                        <td>{{i.min_Price}}</td>
+                        <td>{{i.max_Price}}</td>
+                        <td>{{i.modal_Price}}</td>
+                        <td>{{i.date}}</td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
