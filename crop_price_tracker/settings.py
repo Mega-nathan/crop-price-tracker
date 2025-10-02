@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'crop_price_tracker',
         'USER': 'root',
-        'PASSWORD': 'megamass',
+        'PASSWORD': '', # replace your password here
         'HOST': 'localhost',   # or IP address of DB server
         'PORT': '3306',
         'OPTIONS': {
